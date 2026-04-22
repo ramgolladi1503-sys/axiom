@@ -1,13 +1,12 @@
 
-FINAL TRADEBOT FULLSTACK
+AIXION SYSTEMS LANDING PAGE
 
 Run:
 
 1. redis-server
 2. uvicorn api.server:app --reload
-3. python runner/live_wrapper.py
-4. cd frontend && npm install && npm run dev
+3. cd frontend && npm install && npm run dev
 
-NOTE:
-- Place your bot inside core_bot/
-- Integration is event-driven (no file observer)
+Notes:
+- Frontend now renders the public-facing Aixion Systems landing page instead of the live feed debug screen.
+- The FastAPI backend still exposes /health and /ws for existing event streaming.
