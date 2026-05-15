@@ -95,10 +95,10 @@ function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label="Axiom Labs">
+        <a className="brand" href="#top" aria-label="AIXION LABS">
           <LogoMark />
           <div className="brand-copy">
-            <div className="brand-name">AXIOM LABS</div>
+            <div className="brand-name">AIXION LABS</div>
             <div className="brand-sub">SYSTEMS ENGINEERING</div>
           </div>
         </a>
@@ -125,7 +125,7 @@ function Hero() {
           <div className="eyebrow">Systems Engineering · Real-Time Environments</div>
           <h1>Systems built for environments where errors are not tolerated.</h1>
           <p className="hero-body">
-            Axiom Labs engineers systems that operate under pressure — where timing, accuracy,
+            AIXION LABS engineers systems that operate under pressure — where timing, accuracy,
             and execution discipline directly impact outcomes.
           </p>
           <div className="hero-micro">Limited visibility. High accountability.</div>
@@ -198,8 +198,8 @@ function AccessSection() {
           We do not publish system details, operational frameworks, or internal architecture.
           Collaboration is limited to environments where our work has measurable impact.
         </p>
-        <a className="button button-secondary" href="mailto:contact@axiomlabs.in">
-          contact@axiomlabs.in
+        <a className="button button-secondary" href="mailto:contact@aixionlabs.in">
+          contact@aixionlabs.in
         </a>
       </div>
     </section>
@@ -210,7 +210,7 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-inner">
-        <span>© 2026 Axiom Labs Pvt Ltd</span>
+        <span>© 2026 AIXION LABS Pvt Ltd</span>
         <span>All systems proprietary</span>
       </div>
     </footer>
