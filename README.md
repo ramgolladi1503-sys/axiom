@@ -1,12 +1,33 @@
+# AIXION LABS Landing Page
 
-AIXION SYSTEMS LANDING PAGE
+Public-facing landing page for **AIXION LABS**.
 
-Run:
+The site now uses the Logo 3 forged-network identity direction:
 
-1. redis-server
-2. uvicorn api.server:app --reload
-3. cd frontend && npm install && npm run dev
+- parent brand: **AIXION LABS**
+- flagship product: **AIXION Control Tower**
+- visual language: dark, minimal, forged-system identity
+- brand story: layered effort, resilient architecture, trusted execution, and human oversight of AI/code actions
 
-Notes:
-- Frontend now renders the public-facing Aixion Systems landing page instead of the live feed debug screen.
-- The FastAPI backend still exposes /health and /ws for existing event streaming.
+## Run
+
+1. Start the backend if needed:
+
+```bash
+redis-server
+uvicorn api.server:app --reload
+```
+
+2. Start the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Notes
+
+- Frontend renders the public AIXION LABS landing page.
+- AIXION Control Tower is presented as the flagship product under the parent AIXION LABS brand.
+- The FastAPI backend still exposes `/health` and `/ws` for existing event streaming.
