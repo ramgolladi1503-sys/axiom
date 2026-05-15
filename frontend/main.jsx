@@ -100,7 +100,7 @@ function Header() {
           ))}
         </nav>
 
-        <a className="header-cta" href="mailto:contact@aixionlabs.in">Contact</a>
+        <a className="header-cta" href="mailto:contact@aixionlabs.com">Contact</a>
       </div>
     </header>
   );
@@ -241,7 +241,7 @@ function Contact() {
           Bring a serious problem: AI agents touching code, tools calling sensitive systems,
           automation that needs proof, or QA workflows that must become stronger than checklists.
         </p>
-        <a className="button button-primary" href="mailto:contact@aixionlabs.in">contact@aixionlabs.in</a>
+        <a className="button button-primary" href="mailto:contact@aixionlabs.com">contact@aixionlabs.com</a>
       </div>
     </section>
   );
