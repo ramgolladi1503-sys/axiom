@@ -2,57 +2,63 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 const NAV = [
+  { label: "Systems", href: "#systems" },
   { label: "Work", href: "#work" },
-  { label: "Control Tower", href: "#control-tower" },
-  { label: "Method", href: "#method" },
-  { label: "Access", href: "#access" },
+  { label: "Principles", href: "#principles" },
+  { label: "Contact", href: "#contact" },
+];
+
+const SIGNALS = ["Human approval", "Runtime gates", "Audit trails", "QA evidence"];
+
+const SYSTEMS = [
+  {
+    title: "AI Agent Control",
+    body: "Approval-first workflows for AI agents, coding tools, MCP servers, and automated execution systems.",
+  },
+  {
+    title: "Security Gateways",
+    body: "Runtime checks that block risky tool calls, secret access, destructive actions, and unsafe automation before execution.",
+  },
+  {
+    title: "Quality Intelligence",
+    body: "Evidence-driven QA systems that turn tests, failures, decisions, and releases into traceable proof.",
+  },
+  {
+    title: "Real-Time Reliability",
+    body: "Decision infrastructure for high-pressure environments where stale data, weak gates, or bad timing cause damage.",
+  },
 ];
 
 const WORK = [
   {
-    label: "01",
-    title: "Human approval for AI execution",
-    body:
-      "Mobile approval layers that keep AI agents, code workers, and automation pipelines from acting without review.",
+    name: "Aixion Control Tower",
+    tag: "Mobile approval gateway",
+    body: "A human-in-the-loop control tower for autonomous AI development. It connects agent tasks, approvals, audit trails, Android review screens, and execution workers into one governed flow.",
   },
   {
-    label: "02",
-    title: "Systems that hold under pressure",
-    body:
-      "Backend flows, audit trails, validation gates, and execution workers designed around failure, not wishful thinking.",
+    name: "MCP Shield",
+    tag: "Runtime security layer",
+    body: "A security gateway for AI agents and MCP tools. The goal is simple: observe, explain, block unsafe calls, and preserve an audit trail before tools can damage files, secrets, or systems.",
   },
   {
-    label: "03",
-    title: "Evidence-driven engineering",
-    body:
-      "Projects are built to produce proof: decisions, tests, diffs, approvals, recovery paths, and traceable outcomes.",
+    name: "Tradebot Reliability Lab",
+    tag: "Execution quality system",
+    body: "A real-time automation testbed focused on quote freshness, liquidity gates, executable selection, replay, outcome analytics, and evidence-backed trading decisions.",
+  },
+  {
+    name: "Veriforge",
+    tag: "Proof-of-work system",
+    body: "A living evidence system that turns claims into proof through projects, failures, decisions, tests, architecture, demos, and interview-ready artifacts.",
   },
 ];
 
-const METHOD = [
-  {
-    title: "Governance",
-    body: "Every meaningful action needs clear ownership, permission, and accountability.",
-  },
-  {
-    title: "Trusted execution",
-    body: "Code changes, agent actions, and approvals are bound to validation and payload integrity.",
-  },
-  {
-    title: "Engineering rigor",
-    body: "The work is shaped by constraints, failure modes, and real deployment pressure.",
-  },
-  {
-    title: "Forged systems",
-    body: "The brand mark represents layered effort: systems woven, tested, and strengthened over time.",
-  },
-];
-
-const CONTROL_TOWER_POINTS = [
-  "Approval queue for AI/code actions",
-  "Risk-aware review before execution",
-  "Payload integrity and audit timeline",
-  "Agent, MCP, and GitHub execution oversight",
+const PRINCIPLES = [
+  "Approval before action",
+  "Audit is not optional",
+  "Tests are contracts",
+  "Security starts disabled",
+  "Proof beats claims",
+  "Small PRs, hard gates",
 ];
 
 function App() {
@@ -60,14 +66,15 @@ function App() {
     <>
       <style>{styles}</style>
       <div className="page-shell">
+        <Background />
         <Header />
         <main>
           <Hero />
-          <WorkSection />
-          <ControlTowerSection />
-          <LogoStorySection />
-          <MethodSection />
-          <AccessSection />
+          <Problem />
+          <Systems />
+          <Work />
+          <Principles />
+          <Contact />
         </main>
         <Footer />
       </div>
@@ -79,25 +86,21 @@ function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label="AIXION LABS">
-          <LogoMark className="brand-mark" />
-          <div className="brand-copy">
+        <a className="brand" href="#top" aria-label="AIXION LABS home">
+          <Logo />
+          <div>
             <div className="brand-name">AIXION LABS</div>
-            <div className="brand-sub">FORGED SYSTEMS ENGINEERING</div>
+            <div className="brand-sub">AI CONTROL SYSTEMS</div>
           </div>
         </a>
 
         <nav className="site-nav" aria-label="Primary navigation">
           {NAV.map((item) => (
-            <a key={item.label} href={item.href}>
-              {item.label}
-            </a>
+            <a key={item.label} href={item.href}>{item.label}</a>
           ))}
         </nav>
 
-        <a className="header-action" href="#access">
-          Request Access
-        </a>
+        <a className="header-cta" href="mailto:contact@aixionlabs.in">Contact</a>
       </div>
     </header>
   );
@@ -108,64 +111,68 @@ function Hero() {
     <section id="top" className="hero-section">
       <div className="container hero-grid">
         <div className="hero-copy">
-          <div className="eyebrow">AIXION LABS · PRIVATE ENGINEERING SYSTEMS</div>
-          <h1>Forged systems for AI-era execution.</h1>
+          <div className="eyebrow">AI Agents · QA Automation · Runtime Security</div>
+          <h1>Human control for AI systems that can actually change things.</h1>
           <p className="hero-body">
-            AIXION LABS builds serious control surfaces for environments where AI, automation,
-            and code execution need human judgment before action.
+            AIXION LABS builds approval-first systems for AI agents, automation pipelines,
+            QA workflows, MCP tools, and real-time decision environments — so execution can move
+            fast without becoming blind, unsafe, or untraceable.
           </p>
 
           <div className="hero-actions">
-            <a className="button button-primary" href="#control-tower">
-              View Control Tower
-            </a>
-            <a className="button button-secondary" href="#work">
-              See What We Build
-            </a>
+            <a className="button button-primary" href="#work">View the work</a>
+            <a className="button button-secondary" href="#systems">What we build</a>
           </div>
 
-          <div className="signal-row" aria-label="Brand principles">
-            <Signal label="Governance" value="Clarity" />
-            <Signal label="Execution" value="Integrity" />
-            <Signal label="Oversight" value="Traceability" />
+          <div className="signal-row" aria-label="Core signals">
+            {SIGNALS.map((signal) => <span key={signal}>{signal}</span>)}
           </div>
         </div>
 
-        <div className="hero-identity" aria-label="AIXION LABS identity mark">
-          <div className="identity-card">
-            <LogoMark className="hero-logo" />
-            <div className="identity-label">AIXION LABS</div>
-            <div className="identity-sub">CONTROL · APPROVAL · EVIDENCE</div>
-          </div>
+        <div className="hero-visual-wrap">
+          <ControlPanel />
         </div>
       </div>
     </section>
   );
 }
 
-function Signal({ label, value }) {
+function Problem() {
   return (
-    <div className="signal-item">
-      <span>{label}</span>
-      <strong>{value}</strong>
-    </div>
+    <section className="problem-section">
+      <div className="container problem-grid">
+        <div>
+          <div className="eyebrow">The gap</div>
+          <h2>AI tools are getting powerful. Control is still weak.</h2>
+        </div>
+        <div className="problem-copy">
+          <p>
+            Most teams are adding agents, automations, and model endpoints faster than they are adding
+            approval gates, audit trails, rollback paths, and quality evidence.
+          </p>
+          <p>
+            That is where systems fail: not because AI cannot generate work, but because nobody can
+            prove what happened, why it happened, who approved it, and whether it was safe to execute.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
 
-function WorkSection() {
+function Systems() {
   return (
-    <section id="work" className="section-block">
+    <section id="systems" className="content-section">
       <div className="container">
-        <SectionHeader
-          eyebrow="Work"
-          title="Not dashboards. Not demos. Control systems."
-          intro="The work sits at the point where software stops being decorative and starts deciding what can safely happen next."
+        <SectionHead
+          eyebrow="Systems"
+          title="Built around control, evidence, and execution discipline."
+          intro="The focus is not generic dashboards. The focus is the missing operating layer between human intent and autonomous execution."
         />
-
-        <div className="work-grid">
-          {WORK.map((item) => (
-            <article className="work-card" key={item.title}>
-              <div className="card-label">{item.label}</div>
+        <div className="system-grid">
+          {SYSTEMS.map((item, index) => (
+            <article className="system-card" key={item.title}>
+              <div className="card-index">{String(index + 1).padStart(2, "0")}</div>
               <h3>{item.title}</h3>
               <p>{item.body}</p>
             </article>
@@ -176,107 +183,23 @@ function WorkSection() {
   );
 }
 
-function ControlTowerSection() {
+function Work() {
   return (
-    <section id="control-tower" className="section-block product-section">
-      <div className="container product-grid">
-        <div>
-          <SectionHeader
-            eyebrow="Flagship Product"
-            title="AIXION Control Tower"
-            intro="A mobile approval console for AI and code agents. It keeps execution paused until the right human decision, validation path, and audit trail exist."
-          />
-
-          <div className="product-points">
-            {CONTROL_TOWER_POINTS.map((point) => (
-              <div className="product-point" key={point}>
-                <span className="point-dot" />
-                {point}
+    <section id="work" className="content-section work-section">
+      <div className="container">
+        <SectionHead
+          eyebrow="Current work"
+          title="Products and labs with real proof behind them."
+          intro="These are not random ideas. They come from repeated work across QA, AI agents, MCP security, mobile approval flows, and real-time automation reliability."
+        />
+        <div className="work-list">
+          {WORK.map((item, index) => (
+            <article className="work-item" key={item.name}>
+              <div className="work-number">{String(index + 1).padStart(2, "0")}</div>
+              <div>
+                <div className="work-tag">{item.tag}</div>
+                <h3>{item.name}</h3>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="console-card" aria-label="Control Tower interface preview">
-          <div className="console-topline">
-            <span>AIXION CONTROL TOWER</span>
-            <strong>SECURE</strong>
-          </div>
-          <div className="console-title">Approval Detail</div>
-          <div className="console-subtitle">Review risk before execution is allowed.</div>
-
-          <div className="approval-panel warning-panel">
-            <div className="panel-tag">HIGH RISK</div>
-            <h3>Modify backend approval bridge</h3>
-            <p>Touches execution flow and approval state transition logic.</p>
-          </div>
-
-          <div className="console-matrix">
-            <MiniStatus label="Source" value="Codex Worker" state="Verified" />
-            <MiniStatus label="Integrity" value="Payload Hash" state="Verified" />
-            <MiniStatus label="Target" value="feature/approval" state="Safe Branch" />
-            <MiniStatus label="Validation" value="pytest backend" state="Required" />
-          </div>
-
-          <div className="approval-panel">
-            <div className="panel-tag muted">APPROVAL GATE</div>
-            <p>Approval unlocks only after diff review, validation command, and audit event checks.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MiniStatus({ label, value, state }) {
-  return (
-    <div className="mini-status">
-      <span>{label}</span>
-      <strong>{value}</strong>
-      <em>{state}</em>
-    </div>
-  );
-}
-
-function LogoStorySection() {
-  return (
-    <section className="logo-story-section">
-      <div className="container logo-story-grid">
-        <div className="logo-story-visual">
-          <LogoMark className="story-logo" />
-        </div>
-        <div>
-          <div className="eyebrow">Identity</div>
-          <h2>The forged network mark.</h2>
-          <p>
-            The AIXION mark is built from interlocked geometric bands. It represents the way
-            serious systems are made: not in one clean stroke, but through layers of effort,
-            review, correction, and integration.
-          </p>
-          <p>
-            It carries the shape language of architecture, evidence, and controlled execution —
-            the same principles behind Control Tower and every future AIXION LABS system.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MethodSection() {
-  return (
-    <section id="method" className="section-block">
-      <div className="container">
-        <SectionHeader
-          eyebrow="Method"
-          title="Built around effort, evidence, and restraint."
-          intro="Good systems do not just move fast. They know when not to move, what to verify, and what to record."
-        />
-
-        <div className="method-grid">
-          {METHOD.map((item) => (
-            <article className="method-card" key={item.title}>
-              <h3>{item.title}</h3>
               <p>{item.body}</p>
             </article>
           ))}
@@ -286,26 +209,45 @@ function MethodSection() {
   );
 }
 
-function AccessSection() {
+function Principles() {
   return (
-    <section id="access" className="access-section">
-      <div className="container access-panel">
-        <LogoMark className="access-logo" />
-        <div className="eyebrow">Access</div>
-        <h2>Engagements are selective.</h2>
-        <p>
-          AIXION LABS is built for high-accountability environments. We do not sell generic automation.
-          We build controlled systems where correctness, auditability, and execution discipline matter.
-        </p>
-        <a className="button button-primary" href="mailto:contact@aixionlabs.com">
-          contact@aixionlabs.com
-        </a>
+    <section id="principles" className="content-section">
+      <div className="container principle-panel">
+        <div className="principle-copy">
+          <div className="eyebrow">Principles</div>
+          <h2>No blind automation. No fake certainty. No unverifiable claims.</h2>
+          <p>
+            AIXION LABS is built on a simple rule: powerful systems need visible decisions,
+            strict boundaries, and proof that survives review.
+          </p>
+        </div>
+        <div className="principle-grid">
+          {PRINCIPLES.map((principle) => (
+            <div className="principle-chip" key={principle}>{principle}</div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-function SectionHeader({ eyebrow, title, intro }) {
+function Contact() {
+  return (
+    <section id="contact" className="contact-section">
+      <div className="container contact-panel">
+        <div className="eyebrow">Contact</div>
+        <h2>Building systems where approval, audit, and reliability matter?</h2>
+        <p>
+          Bring a serious problem: AI agents touching code, tools calling sensitive systems,
+          automation that needs proof, or QA workflows that must become stronger than checklists.
+        </p>
+        <a className="button button-primary" href="mailto:contact@aixionlabs.in">contact@aixionlabs.in</a>
+      </div>
+    </section>
+  );
+}
+
+function SectionHead({ eyebrow, title, intro }) {
   return (
     <div className="section-head">
       <div className="eyebrow">{eyebrow}</div>
@@ -315,36 +257,73 @@ function SectionHeader({ eyebrow, title, intro }) {
   );
 }
 
+function ControlPanel() {
+  const rows = [
+    ["Agent task", "Waiting"],
+    ["Risk score", "Review"],
+    ["MCP call", "Blocked"],
+    ["Audit trail", "Saved"],
+  ];
+
+  return (
+    <div className="control-panel" aria-hidden="true">
+      <div className="panel-topline">
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="panel-title">Execution Control</div>
+      <div className="panel-subtitle">approve · reject · revise · audit</div>
+      <div className="panel-core">
+        <div className="orb"><span /></div>
+        <div className="core-lines">
+          <i /><i /><i />
+        </div>
+      </div>
+      <div className="panel-rows">
+        {rows.map(([label, value]) => (
+          <div className="panel-row" key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Logo() {
+  return (
+    <div className="logo-mark" aria-hidden="true">
+      <span className="loop left" />
+      <span className="loop right" />
+      <span className="core-dot" />
+      <span className="bridge left-bridge" />
+      <span className="bridge right-bridge" />
+    </div>
+  );
+}
+
+function Background() {
+  return (
+    <div className="background" aria-hidden="true">
+      <div className="grid" />
+      <div className="glow glow-one" />
+      <div className="glow glow-two" />
+      <div className="vertical-line line-one" />
+      <div className="vertical-line line-two" />
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-inner">
         <span>© 2026 AIXION LABS</span>
-        <span>Forged systems engineering</span>
+        <span>Control systems for AI execution</span>
       </div>
     </footer>
-  );
-}
-
-function LogoMark({ className = "" }) {
-  return (
-    <svg
-      className={`logo-mark ${className}`}
-      viewBox="0 0 120 120"
-      role="img"
-      aria-label="AIXION forged network logo"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path className="mark-stroke" d="M27 74 L44 91 L61 74 L77 91 L94 74" />
-      <path className="mark-stroke" d="M27 46 L44 29 L60 45 L77 29 L94 46" />
-      <path className="mark-stroke" d="M27 46 L44 63 L27 80" />
-      <path className="mark-stroke" d="M94 46 L77 63 L94 80" />
-      <path className="mark-stroke" d="M44 29 L77 91" />
-      <path className="mark-stroke" d="M77 29 L44 91" />
-      <path className="mark-cap" d="M58 19 L58 38 L69 27 L69 8 Z" />
-      <path className="mark-cap" d="M28 80 L17 91 L31 91 L39 83 Z" />
-      <path className="mark-cap" d="M92 80 L103 91 L89 91 L81 83 Z" />
-    </svg>
   );
 }
 
@@ -352,26 +331,22 @@ const styles = `
   :root {
     color-scheme: dark;
     --bg: #050608;
-    --bg-soft: #0a0c10;
     --panel: rgba(255, 255, 255, 0.035);
     --panel-strong: rgba(255, 255, 255, 0.065);
     --line: rgba(255, 255, 255, 0.105);
     --line-strong: rgba(255, 255, 255, 0.22);
     --text: rgba(255, 255, 255, 0.96);
-    --muted: rgba(255, 255, 255, 0.6);
+    --muted: rgba(255, 255, 255, 0.62);
     --soft: rgba(255, 255, 255, 0.38);
-    --faint: rgba(255, 255, 255, 0.18);
-    --warning: #e1b45f;
-    --success: #8ed6b4;
-    --danger: #e48181;
+    --container: 1180px;
     --radius-xl: 34px;
     --radius-lg: 24px;
-    --container: 1180px;
+    --radius-md: 18px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; background: var(--bg); }
+  html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--bg); color: var(--text); }
   a { color: inherit; text-decoration: none; }
 
@@ -380,635 +355,150 @@ const styles = `
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(circle at 18% 0%, rgba(255,255,255,0.055), transparent 28%),
-      radial-gradient(circle at 78% 18%, rgba(255,255,255,0.035), transparent 34%),
-      linear-gradient(180deg, #050608 0%, #080a0d 52%, #050608 100%);
+      radial-gradient(circle at 16% 8%, rgba(255,255,255,0.08), transparent 28%),
+      radial-gradient(circle at 84% 4%, rgba(255,255,255,0.055), transparent 30%),
+      linear-gradient(to bottom, rgba(255,255,255,0.025), transparent 20%),
+      var(--bg);
   }
 
-  .page-shell::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(circle at center, transparent 0, rgba(0,0,0,0.55) 78%);
-    z-index: 0;
-  }
+  .container { width: min(calc(100% - 48px), var(--container)); margin: 0 auto; }
 
-  .container {
-    width: min(calc(100% - 48px), var(--container));
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+  .background { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 138px 138px;
+    mask-image: linear-gradient(to bottom, black, transparent 92%);
   }
+  .glow { position: absolute; border: 1px solid rgba(255,255,255,0.06); border-radius: 999px; filter: blur(64px); }
+  .glow-one { width: 540px; height: 540px; right: -130px; top: -150px; }
+  .glow-two { width: 460px; height: 460px; left: -160px; bottom: 20%; opacity: 0.65; }
+  .vertical-line { position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent); }
+  .line-one { left: 34%; }
+  .line-two { left: 68%; opacity: 0.7; }
 
   .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    position: sticky; top: 0; z-index: 30;
     border-bottom: 1px solid var(--line);
-    background: rgba(5, 6, 8, 0.76);
+    background: rgba(5,6,8,0.74);
     backdrop-filter: blur(22px);
   }
-
-  .header-inner {
-    min-height: 84px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+  .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+  .brand-name { font-size: 12px; letter-spacing: 0.34em; color: var(--text); }
+  .brand-sub { margin-top: 4px; font-size: 10px; letter-spacing: 0.28em; color: var(--soft); }
+  .site-nav { display: flex; gap: 34px; align-items: center; }
+  .site-nav a, .header-cta {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.58);
+    transition: color 160ms ease, border-color 160ms ease;
   }
+  .site-nav a:hover { color: white; }
+  .header-cta { border: 1px solid var(--line); border-radius: 999px; padding: 11px 15px; }
+  .header-cta:hover { color: white; border-color: var(--line-strong); }
 
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
-  }
+  .logo-mark { position: relative; width: 56px; height: 36px; flex-shrink: 0; }
+  .loop { position: absolute; top: 0; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.78); border-radius: 999px; }
+  .loop.left { left: 0; } .loop.right { right: 0; }
+  .core-dot { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; transform: translate(-50%, -50%); border-radius: 50%; background: white; }
+  .bridge { position: absolute; top: 50%; height: 1px; width: 18px; transform: translateY(-50%); background: rgba(255,255,255,0.72); }
+  .left-bridge { left: 15px; } .right-bridge { right: 15px; }
 
-  .brand-mark {
-    width: 46px;
-    height: 46px;
-  }
-
-  .logo-mark {
-    display: block;
-    overflow: visible;
-  }
-
-  .mark-stroke,
-  .mark-cap {
-    fill: none;
-    stroke: rgba(255,255,255,0.94);
-    stroke-width: 7;
-    stroke-linecap: square;
-    stroke-linejoin: miter;
-  }
-
-  .mark-cap {
-    fill: rgba(255,255,255,0.94);
-    stroke: none;
-  }
-
-  .brand-name {
-    font-size: 11px;
-    letter-spacing: 0.34em;
-    color: var(--text);
-  }
-
-  .brand-sub {
-    margin-top: 5px;
-    font-size: 9px;
-    letter-spacing: 0.26em;
-    color: var(--soft);
-  }
-
-  .site-nav {
-    display: flex;
-    align-items: center;
-    gap: 34px;
-  }
-
-  .site-nav a,
-  .header-action,
-  .eyebrow {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.27em;
-    color: var(--muted);
-  }
-
-  .site-nav a:hover,
-  .header-action:hover { color: var(--text); }
-
-  .header-action {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 13px 18px;
-    transition: border-color 160ms ease, color 160ms ease;
-  }
-
-  .hero-section {
-    min-height: calc(100vh - 84px);
-    display: flex;
-    align-items: center;
-    padding: 96px 0;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
-    gap: 68px;
-    align-items: center;
-  }
-
-  .hero-copy h1 {
-    margin: 24px 0 0;
-    max-width: 860px;
-    font-size: clamp(54px, 7vw, 104px);
-    line-height: 0.94;
-    letter-spacing: -0.06em;
-    font-weight: 300;
-  }
-
-  .hero-body {
-    margin: 34px 0 0;
-    max-width: 740px;
-    font-size: 18px;
-    line-height: 1.9;
-    color: var(--muted);
-  }
-
-  .hero-actions {
-    margin-top: 44px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-
+  main, .site-footer { position: relative; z-index: 1; }
+  .hero-section { min-height: 94vh; display: flex; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 70px; align-items: center; padding: 86px 0 96px; }
+  .eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); }
+  h1, h2, h3, p { margin: 0; }
+  .hero-copy h1 { margin-top: 24px; max-width: 880px; font-size: clamp(50px, 6.8vw, 92px); line-height: 0.95; letter-spacing: -0.057em; font-weight: 300; }
+  .hero-body { margin-top: 30px; max-width: 790px; font-size: 18px; line-height: 1.9; color: var(--muted); }
+  .hero-actions { margin-top: 42px; display: flex; flex-wrap: wrap; gap: 14px; }
   .button {
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 22px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.24em;
+    display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px;
+    border-radius: 999px; border: 1px solid var(--line); font-size: 11px; text-transform: uppercase; letter-spacing: 0.24em;
     transition: 180ms ease;
   }
+  .button-primary { background: white; color: black; border-color: white; font-weight: 700; }
+  .button-primary:hover { transform: translateY(-1px); background: rgba(255,255,255,0.92); }
+  .button-secondary { color: rgba(255,255,255,0.78); }
+  .button-secondary:hover { color: white; border-color: var(--line-strong); transform: translateY(-1px); }
+  .signal-row { margin-top: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; max-width: 780px; }
+  .signal-row span { padding: 15px 14px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,0.022); text-align: center; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
 
-  .button-primary {
-    background: #f5f5f5;
-    border-color: #f5f5f5;
-    color: #050608;
+  .hero-visual-wrap { display: flex; justify-content: flex-end; }
+  .control-panel { width: min(100%, 500px); min-height: 610px; border: 1px solid rgba(255,255,255,0.11); border-radius: var(--radius-xl); background: linear-gradient(to bottom, rgba(255,255,255,0.055), rgba(255,255,255,0.018)); padding: 28px; box-shadow: 0 24px 100px rgba(0,0,0,0.34); overflow: hidden; position: relative; }
+  .control-panel::before { content: ""; position: absolute; inset: -120px -80px auto auto; width: 340px; height: 340px; border-radius: 999px; background: rgba(255,255,255,0.09); filter: blur(70px); }
+  .panel-topline { display: flex; gap: 8px; position: relative; z-index: 1; }
+  .panel-topline span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.22); }
+  .panel-title { margin-top: 42px; font-size: 34px; letter-spacing: -0.04em; font-weight: 300; }
+  .panel-subtitle { margin-top: 10px; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .panel-core { position: relative; height: 230px; display: flex; align-items: center; justify-content: center; }
+  .orb { width: 142px; height: 142px; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; display: grid; place-items: center; background: rgba(255,255,255,0.026); }
+  .orb span { width: 52px; height: 52px; border-radius: 999px; background: white; box-shadow: 0 0 70px rgba(255,255,255,0.45); }
+  .core-lines i { position: absolute; left: 36px; right: 36px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.14), transparent); }
+  .core-lines i:nth-child(1) { top: 75px; } .core-lines i:nth-child(2) { top: 115px; } .core-lines i:nth-child(3) { top: 155px; }
+  .panel-rows { display: grid; gap: 12px; }
+  .panel-row { min-height: 58px; border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; background: rgba(0,0,0,0.14); display: flex; align-items: center; justify-content: space-between; padding: 0 18px; }
+  .panel-row span { color: rgba(255,255,255,0.56); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .panel-row strong { color: white; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; }
+
+  .problem-section { padding: 90px 0 70px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.012); }
+  .problem-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: start; }
+  .problem-grid h2, .section-head h2, .principle-copy h2, .contact-panel h2 { margin-top: 16px; font-size: clamp(34px, 4.2vw, 58px); line-height: 1.03; letter-spacing: -0.046em; font-weight: 300; }
+  .problem-copy { display: grid; gap: 22px; }
+  .problem-copy p, .section-head p, .principle-copy p, .contact-panel p { font-size: 18px; line-height: 1.9; color: var(--muted); }
+
+  .content-section { padding: 116px 0; }
+  .section-head { max-width: 940px; margin-bottom: 46px; }
+  .section-head p { margin-top: 22px; max-width: 820px; }
+  .system-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .system-card { min-height: 286px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--panel); transition: 180ms ease; }
+  .system-card:hover { transform: translateY(-3px); border-color: var(--line-strong); background: rgba(255,255,255,0.05); }
+  .card-index, .work-number { font-size: 11px; letter-spacing: 0.28em; color: rgba(255,255,255,0.3); }
+  .system-card h3 { margin-top: 30px; font-size: 24px; line-height: 1.18; letter-spacing: -0.034em; font-weight: 300; }
+  .system-card p { margin-top: 18px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+
+  .work-section { padding-top: 40px; }
+  .work-list { border-top: 1px solid var(--line); }
+  .work-item { display: grid; grid-template-columns: 90px 0.8fr 1.2fr; gap: 28px; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .work-tag { margin-bottom: 10px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+  .work-item h3 { font-size: 30px; line-height: 1.14; letter-spacing: -0.034em; font-weight: 300; }
+  .work-item p { color: var(--muted); font-size: 16px; line-height: 1.85; }
+
+  .principle-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 48px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(255,255,255,0.018)); }
+  .principle-copy p { margin-top: 22px; }
+  .principle-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-content: center; }
+  .principle-chip { min-height: 66px; border: 1px solid var(--line); border-radius: 999px; display: flex; align-items: center; justify-content: center; padding: 0 18px; background: rgba(0,0,0,0.12); color: rgba(255,255,255,0.72); font-size: 12px; text-transform: uppercase; letter-spacing: 0.19em; text-align: center; }
+
+  .contact-section { padding: 60px 0 130px; }
+  .contact-panel { max-width: 980px; margin: 0 auto; text-align: center; padding: 56px 42px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: rgba(255,255,255,0.024); }
+  .contact-panel p { max-width: 790px; margin: 24px auto 0; }
+  .contact-panel .button { margin-top: 34px; }
+
+  .site-footer { border-top: 1px solid var(--line); padding: 28px 0; }
+  .footer-inner { display: flex; justify-content: space-between; gap: 20px; color: rgba(255,255,255,0.36); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
+
+  @media (max-width: 1120px) {
+    .hero-grid, .problem-grid, .principle-panel { grid-template-columns: 1fr; }
+    .hero-visual-wrap { justify-content: flex-start; }
+    .system-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .work-item { grid-template-columns: 70px 1fr; }
+    .work-item p { grid-column: 2; }
   }
 
-  .button-primary:hover { background: rgba(255,255,255,0.9); }
-  .button-secondary:hover { border-color: var(--line-strong); color: var(--text); }
-
-  .signal-row {
-    margin-top: 58px;
-    padding-top: 28px;
-    border-top: 1px solid var(--line);
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
-    max-width: 760px;
-  }
-
-  .signal-item span {
-    display: block;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: var(--soft);
-  }
-
-  .signal-item strong {
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    letter-spacing: 0.06em;
-    font-weight: 400;
-    color: rgba(255,255,255,0.84);
-  }
-
-  .hero-identity {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .identity-card {
-    width: min(100%, 470px);
-    aspect-ratio: 0.86;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-xl);
-    background:
-      radial-gradient(circle at 50% 32%, rgba(255,255,255,0.09), transparent 28%),
-      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 44px;
-    box-shadow: 0 30px 90px rgba(0,0,0,0.42);
-  }
-
-  .hero-logo {
-    width: 220px;
-    height: 220px;
-    filter: drop-shadow(0 20px 40px rgba(255,255,255,0.06));
-  }
-
-  .identity-label {
-    margin-top: 34px;
-    font-size: 30px;
-    letter-spacing: 0.32em;
-    color: var(--text);
-  }
-
-  .identity-sub {
-    margin-top: 18px;
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    color: var(--soft);
-  }
-
-  .section-block {
-    padding: 116px 0;
-    position: relative;
-  }
-
-  .section-head {
-    max-width: 910px;
-    margin-bottom: 42px;
-  }
-
-  .section-head h2,
-  .logo-story-grid h2,
-  .access-panel h2 {
-    margin: 16px 0 0;
-    font-size: clamp(34px, 4.2vw, 56px);
-    line-height: 1.02;
-    letter-spacing: -0.045em;
-    font-weight: 300;
-  }
-
-  .section-head p,
-  .logo-story-grid p,
-  .access-panel p {
-    margin: 24px 0 0;
-    max-width: 760px;
-    font-size: 18px;
-    line-height: 1.9;
-    color: var(--muted);
-  }
-
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-  }
-
-  .work-card,
-  .method-card,
-  .console-card,
-  .approval-panel,
-  .mini-status {
-    border: 1px solid var(--line);
-    background: var(--panel);
-    border-radius: var(--radius-lg);
-  }
-
-  .work-card,
-  .method-card {
-    padding: 30px;
-  }
-
-  .work-card:hover,
-  .method-card:hover {
-    border-color: var(--line-strong);
-    background: var(--panel-strong);
-    transform: translateY(-2px);
-  }
-
-  .work-card,
-  .method-card {
-    transition: 160ms ease;
-  }
-
-  .card-label {
-    font-size: 11px;
-    letter-spacing: 0.26em;
-    color: var(--soft);
-  }
-
-  .work-card h3,
-  .method-card h3 {
-    margin: 28px 0 0;
-    font-size: 24px;
-    line-height: 1.2;
-    font-weight: 300;
-    letter-spacing: -0.03em;
-  }
-
-  .work-card p,
-  .method-card p,
-  .approval-panel p {
-    margin: 18px 0 0;
-    font-size: 15px;
-    line-height: 1.85;
-    color: var(--muted);
-  }
-
-  .product-section {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: rgba(255,255,255,0.015);
-  }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.9fr);
-    gap: 64px;
-    align-items: center;
-  }
-
-  .product-points {
-    display: grid;
-    gap: 14px;
-    max-width: 640px;
-  }
-
-  .product-point {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    min-height: 54px;
-    padding: 0 18px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: rgba(255,255,255,0.78);
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    background: rgba(255,255,255,0.025);
-  }
-
-  .point-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 999px;
-    background: var(--success);
-    flex: 0 0 auto;
-  }
-
-  .console-card {
-    padding: 28px;
-    border-radius: 30px;
-    background:
-      radial-gradient(circle at 18% 0%, rgba(255,255,255,0.07), transparent 24%),
-      rgba(255,255,255,0.035);
-  }
-
-  .console-topline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--soft);
-  }
-
-  .console-topline strong {
-    color: var(--success);
-    font-weight: 400;
-  }
-
-  .console-title {
-    margin-top: 42px;
-    font-size: 34px;
-    letter-spacing: -0.04em;
-    font-weight: 300;
-  }
-
-  .console-subtitle {
-    margin-top: 10px;
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  .approval-panel {
-    margin-top: 22px;
-    padding: 22px;
-  }
-
-  .warning-panel {
-    border-color: rgba(225,180,95,0.28);
-    background: rgba(225,180,95,0.055);
-  }
-
-  .panel-tag {
-    display: inline-flex;
-    border: 1px solid rgba(225,180,95,0.35);
-    border-radius: 999px;
-    padding: 7px 10px;
-    color: var(--warning);
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .panel-tag.muted {
-    color: var(--muted);
-    border-color: var(--line);
-  }
-
-  .approval-panel h3 {
-    margin: 18px 0 0;
-    font-size: 22px;
-    font-weight: 400;
-  }
-
-  .console-matrix {
-    margin-top: 18px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .mini-status {
-    padding: 18px;
-    border-radius: 18px;
-  }
-
-  .mini-status span,
-  .mini-status em {
-    display: block;
-    color: var(--soft);
-    font-style: normal;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .mini-status strong {
-    display: block;
-    margin: 9px 0;
-    color: var(--text);
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .mini-status em {
-    color: var(--success);
-  }
-
-  .logo-story-section {
-    padding: 126px 0;
-  }
-
-  .logo-story-grid {
-    display: grid;
-    grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
-    gap: 68px;
-    align-items: center;
-  }
-
-  .logo-story-visual {
-    min-height: 380px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-xl);
-    background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 36%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .story-logo {
-    width: 235px;
-    height: 235px;
-  }
-
-  .method-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .method-card {
-    min-height: 230px;
-  }
-
-  .access-section {
-    padding: 118px 0 140px;
-  }
-
-  .access-panel {
-    max-width: 920px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 54px 42px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-xl);
-    background: rgba(255,255,255,0.025);
-  }
-
-  .access-logo {
-    width: 82px;
-    height: 82px;
-    margin: 0 auto 26px;
-  }
-
-  .access-panel p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .access-panel .button {
-    margin-top: 34px;
-  }
-
-  .site-footer {
-    border-top: 1px solid var(--line);
-    padding: 28px 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    color: var(--soft);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 1040px) {
-    .hero-grid,
-    .product-grid,
-    .logo-story-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-identity {
-      justify-content: flex-start;
-    }
-
-    .method-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 760px) {
-    .site-nav,
-    .header-action {
-      display: none;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--container));
-    }
-
-    .hero-section,
-    .section-block,
-    .logo-story-section,
-    .access-section {
-      padding: 74px 0;
-    }
-
-    .hero-copy h1 {
-      font-size: clamp(48px, 16vw, 72px);
-    }
-
-    .hero-body,
-    .section-head p,
-    .logo-story-grid p,
-    .access-panel p {
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .signal-row,
-    .work-grid,
-    .method-grid,
-    .console-matrix {
-      grid-template-columns: 1fr;
-    }
-
-    .identity-card {
-      width: 100%;
-      aspect-ratio: auto;
-      min-height: 420px;
-    }
-
-    .hero-logo,
-    .story-logo {
-      width: 180px;
-      height: 180px;
-    }
-
-    .identity-label {
-      font-size: 22px;
-    }
-
-    .access-panel {
-      padding: 40px 24px;
-      text-align: left;
-    }
-
-    .access-logo {
-      margin-left: 0;
-    }
-
-    .footer-inner {
-      flex-direction: column;
-    }
+  @media (max-width: 820px) {
+    .site-nav, .header-cta { display: none; }
+    .container { width: min(calc(100% - 32px), var(--container)); }
+    .hero-grid { padding-top: 64px; gap: 42px; }
+    .hero-copy h1 { font-size: clamp(44px, 14vw, 62px); }
+    .hero-body, .problem-copy p, .section-head p, .principle-copy p, .contact-panel p { font-size: 16px; line-height: 1.8; }
+    .signal-row, .system-grid, .principle-grid { grid-template-columns: 1fr; }
+    .control-panel { min-height: 520px; }
+    .problem-section, .content-section { padding: 78px 0; }
+    .work-item { grid-template-columns: 1fr; gap: 14px; }
+    .work-item p { grid-column: auto; }
+    .principle-panel, .contact-panel { padding: 34px 22px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 `;
 
