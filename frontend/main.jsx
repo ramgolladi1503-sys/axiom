@@ -5,10 +5,11 @@ const NAV = [
   { label: "Systems", href: "#systems" },
   { label: "Work", href: "#work" },
   { label: "Principles", href: "#principles" },
+  { label: "Founder", href: "#founder" },
   { label: "Contact", href: "#contact" },
 ];
 
-const SIGNALS = ["Human approval", "Runtime gates", "Audit trails", "QA evidence"];
+const SIGNALS = ["Human approval", "Runtime gates", "Audit trails", "Evidence first"];
 
 const SYSTEMS = [
   {
@@ -32,23 +33,23 @@ const SYSTEMS = [
 const WORK = [
   {
     name: "Aixion Control Tower",
-    tag: "Mobile approval gateway",
-    body: "A human-in-the-loop control tower for autonomous AI development. It connects agent tasks, approvals, audit trails, Android review screens, and execution workers into one governed flow.",
+    tag: "Flagship build",
+    body: "A human-in-the-loop control tower for AI-assisted software work. It connects agent tasks, approvals, audit trails, mobile review, validation, and execution workers into one governed flow.",
   },
   {
     name: "MCP Shield",
-    tag: "Runtime security layer",
-    body: "A security gateway for AI agents and MCP tools. The goal is simple: observe, explain, block unsafe calls, and preserve an audit trail before tools can damage files, secrets, or systems.",
-  },
-  {
-    name: "Tradebot Reliability Lab",
-    tag: "Execution quality system",
-    body: "A real-time automation testbed focused on quote freshness, liquidity gates, executable selection, replay, outcome analytics, and evidence-backed trading decisions.",
+    tag: "AI security",
+    body: "A runtime security gateway for AI agents and MCP tools designed to observe, explain, approve, audit, or block risky tool calls before execution.",
   },
   {
     name: "Veriforge",
-    tag: "Proof-of-work system",
-    body: "A living evidence system that turns claims into proof through projects, failures, decisions, tests, architecture, demos, and interview-ready artifacts.",
+    tag: "Evidence system",
+    body: "A living proof system that maps claims to projects, failures, decisions, tests, architecture, demos, and reviewable evidence.",
+  },
+  {
+    name: "Financial Systems Research Lab",
+    tag: "Research",
+    body: "An experimental real-time financial-systems environment used to study data quality, market microstructure, replay, risk controls, reliability, and evidence-driven decision infrastructure. It is not offered as investment advice or an automated trading service.",
   },
 ];
 
@@ -58,8 +59,18 @@ const PRINCIPLES = [
   "Tests are contracts",
   "Security starts disabled",
   "Proof beats claims",
-  "Small PRs, hard gates",
+  "Failure is evidence",
 ];
+
+function BrandLockup({ className = "" }) {
+  return (
+    <img
+      className={`brand-lockup ${className}`}
+      src="/brand/aixion-lab-brand-lockup.webp"
+      alt="AIXION LAB — End is the new beginning"
+    />
+  );
+}
 
 function App() {
   return (
@@ -74,6 +85,7 @@ function App() {
           <Systems />
           <Work />
           <Principles />
+          <Founder />
           <Contact />
         </main>
         <Footer />
@@ -86,12 +98,8 @@ function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label="AIXION LABS home">
-          <Logo />
-          <div>
-            <div className="brand-name">AIXION LABS</div>
-            <div className="brand-sub">AI CONTROL SYSTEMS</div>
-          </div>
+        <a className="brand" href="#top" aria-label="AIXION LAB home">
+          <BrandLockup className="header-lockup" />
         </a>
 
         <nav className="site-nav" aria-label="Primary navigation">
@@ -100,7 +108,7 @@ function Header() {
           ))}
         </nav>
 
-        <a className="header-cta" href="mailto:contact@aixionlabs.com">Contact</a>
+        <a className="header-cta" href="#contact">Contact</a>
       </div>
     </header>
   );
@@ -111,20 +119,21 @@ function Hero() {
     <section id="top" className="hero-section">
       <div className="container hero-grid">
         <div className="hero-copy">
-          <div className="eyebrow">AI Agents · QA Automation · Runtime Security</div>
+          <BrandLockup className="hero-lockup" />
+          <div className="eyebrow">AI Systems · QA Automation · Runtime Security · Applied Research</div>
           <h1>Human control for AI systems that can actually change things.</h1>
           <p className="hero-body">
-            AIXION LABS builds approval-first systems for AI agents, automation pipelines,
-            QA workflows, MCP tools, and real-time decision environments — so execution can move
-            fast without becoming blind, unsafe, or untraceable.
+            AIXION LAB is an independent AI product and research studio building controlled,
+            testable, evidence-driven systems across agent governance, software quality,
+            runtime security, automation, and real-world decision infrastructure.
           </p>
 
           <div className="hero-actions">
-            <a className="button button-primary" href="#work">View the work</a>
+            <a className="button button-primary" href="#work">Explore the work</a>
             <a className="button button-secondary" href="#systems">What we build</a>
           </div>
 
-          <div className="signal-row" aria-label="Core signals">
+          <div className="signal-row" aria-label="Core principles">
             {SIGNALS.map((signal) => <span key={signal}>{signal}</span>)}
           </div>
         </div>
@@ -143,16 +152,16 @@ function Problem() {
       <div className="container problem-grid">
         <div>
           <div className="eyebrow">The gap</div>
-          <h2>AI tools are getting powerful. Control is still weak.</h2>
+          <h2>AI tools are becoming powerful. Control, proof, and accountability are lagging.</h2>
         </div>
         <div className="problem-copy">
           <p>
-            Most teams are adding agents, automations, and model endpoints faster than they are adding
-            approval gates, audit trails, rollback paths, and quality evidence.
+            Teams can now give models access to code, files, tools, APIs, workflows, and operational
+            systems. Generating work is no longer the hard part.
           </p>
           <p>
-            That is where systems fail: not because AI cannot generate work, but because nobody can
-            prove what happened, why it happened, who approved it, and whether it was safe to execute.
+            The difficult part is proving what happened, why it happened, what was allowed,
+            what failed, who approved it, and whether execution stayed inside the intended boundary.
           </p>
         </div>
       </div>
@@ -167,7 +176,7 @@ function Systems() {
         <SectionHead
           eyebrow="Systems"
           title="Built around control, evidence, and execution discipline."
-          intro="The focus is not generic dashboards. The focus is the missing operating layer between human intent and autonomous execution."
+          intro="The focus is not generic AI wrappers. The focus is the operating layer between human intent and autonomous execution."
         />
         <div className="system-grid">
           {SYSTEMS.map((item, index) => (
@@ -189,8 +198,8 @@ function Work() {
       <div className="container">
         <SectionHead
           eyebrow="Current work"
-          title="Products and labs with real proof behind them."
-          intro="These are not random ideas. They come from repeated work across QA, AI agents, MCP security, mobile approval flows, and real-time automation reliability."
+          title="Products and research with proof behind them."
+          intro="Each project is shown according to its real maturity. Research stays research; prototypes stay prototypes; working systems earn stronger claims through evidence."
         />
         <div className="work-list">
           {WORK.map((item, index) => (
@@ -217,8 +226,8 @@ function Principles() {
           <div className="eyebrow">Principles</div>
           <h2>No blind automation. No fake certainty. No unverifiable claims.</h2>
           <p>
-            AIXION LABS is built on a simple rule: powerful systems need visible decisions,
-            strict boundaries, and proof that survives review.
+            AIXION LAB is built around one operating rule: powerful systems need visible decisions,
+            strict boundaries, honest maturity labels, and proof that survives review.
           </p>
         </div>
         <div className="principle-grid">
@@ -231,17 +240,43 @@ function Principles() {
   );
 }
 
+function Founder() {
+  return (
+    <section id="founder" className="founder-section">
+      <div className="container founder-grid">
+        <div>
+          <div className="eyebrow">Founder</div>
+          <h2>Built from software quality into AI systems engineering.</h2>
+        </div>
+        <div className="founder-copy">
+          <p>
+            AIXION LAB is being built by Ram Golladi as an independent product studio and technical
+            body of work around AI systems, agent governance, QA, automation, security, and applied research.
+          </p>
+          <p>
+            The objective is not to hide AI-assisted development. The objective is to show how systems
+            are directed, reviewed, tested, corrected, governed, and turned into defensible engineering evidence.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Contact() {
   return (
     <section id="contact" className="contact-section">
       <div className="container contact-panel">
+        <BrandLockup className="contact-lockup" />
         <div className="eyebrow">Contact</div>
-        <h2>Building systems where approval, audit, and reliability matter?</h2>
+        <h2>Building something where AI needs stronger control, quality, or evidence?</h2>
         <p>
-          Bring a serious problem: AI agents touching code, tools calling sensitive systems,
-          automation that needs proof, or QA workflows that must become stronger than checklists.
+          AIXION LAB is evolving in public through products, engineering case studies,
+          research systems, failures, decisions, and proof of work.
         </p>
-        <a className="button button-primary" href="mailto:contact@aixionlabs.com">contact@aixionlabs.com</a>
+        <a className="button button-primary" href="mailto:contact@aixionlabs.com">
+          contact@aixionlabs.com
+        </a>
       </div>
     </section>
   );
@@ -268,17 +303,13 @@ function ControlPanel() {
   return (
     <div className="control-panel" aria-hidden="true">
       <div className="panel-topline">
-        <span />
-        <span />
-        <span />
+        <span /><span /><span />
       </div>
       <div className="panel-title">Execution Control</div>
       <div className="panel-subtitle">approve · reject · revise · audit</div>
       <div className="panel-core">
         <div className="orb"><span /></div>
-        <div className="core-lines">
-          <i /><i /><i />
-        </div>
+        <div className="core-lines"><i /><i /><i /></div>
       </div>
       <div className="panel-rows">
         {rows.map(([label, value]) => (
@@ -288,18 +319,6 @@ function ControlPanel() {
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-function Logo() {
-  return (
-    <div className="logo-mark" aria-hidden="true">
-      <span className="loop left" />
-      <span className="loop right" />
-      <span className="core-dot" />
-      <span className="bridge left-bridge" />
-      <span className="bridge right-bridge" />
     </div>
   );
 }
@@ -320,8 +339,8 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-inner">
-        <span>© 2026 AIXION LABS</span>
-        <span>Control systems for AI execution</span>
+        <span>© 2026 AIXION LAB</span>
+        <span>END IS THE NEW BEGINNING</span>
       </div>
     </footer>
   );
@@ -341,7 +360,6 @@ const styles = `
     --container: 1180px;
     --radius-xl: 34px;
     --radius-lg: 24px;
-    --radius-md: 18px;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
@@ -349,6 +367,7 @@ const styles = `
   html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--bg); color: var(--text); }
   a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
 
   .page-shell {
     min-height: 100vh;
@@ -362,6 +381,7 @@ const styles = `
   }
 
   .container { width: min(calc(100% - 48px), var(--container)); margin: 0 auto; }
+  main, .site-footer { position: relative; z-index: 1; }
 
   .background { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
   .grid {
@@ -382,37 +402,30 @@ const styles = `
   .site-header {
     position: sticky; top: 0; z-index: 30;
     border-bottom: 1px solid var(--line);
-    background: rgba(5,6,8,0.74);
+    background: rgba(5,6,8,0.80);
     backdrop-filter: blur(22px);
   }
-  .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
-  .brand-name { font-size: 12px; letter-spacing: 0.34em; color: var(--text); }
-  .brand-sub { margin-top: 4px; font-size: 10px; letter-spacing: 0.28em; color: var(--soft); }
-  .site-nav { display: flex; gap: 34px; align-items: center; }
+  .header-inner { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; flex-shrink: 0; }
+  .brand-lockup { display: block; object-fit: contain; }
+  .header-lockup { width: 188px; height: 70px; object-position: left center; }
+  .site-nav { display: flex; gap: 30px; align-items: center; }
   .site-nav a, .header-cta {
-    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.58);
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.58);
     transition: color 160ms ease, border-color 160ms ease;
   }
   .site-nav a:hover { color: white; }
   .header-cta { border: 1px solid var(--line); border-radius: 999px; padding: 11px 15px; }
   .header-cta:hover { color: white; border-color: var(--line-strong); }
 
-  .logo-mark { position: relative; width: 56px; height: 36px; flex-shrink: 0; }
-  .loop { position: absolute; top: 0; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.78); border-radius: 999px; }
-  .loop.left { left: 0; } .loop.right { right: 0; }
-  .core-dot { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; transform: translate(-50%, -50%); border-radius: 50%; background: white; }
-  .bridge { position: absolute; top: 50%; height: 1px; width: 18px; transform: translateY(-50%); background: rgba(255,255,255,0.72); }
-  .left-bridge { left: 15px; } .right-bridge { right: 15px; }
-
-  main, .site-footer { position: relative; z-index: 1; }
   .hero-section { min-height: 94vh; display: flex; align-items: center; }
-  .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 70px; align-items: center; padding: 86px 0 96px; }
+  .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 70px; align-items: center; padding: 78px 0 96px; }
+  .hero-lockup { width: min(470px, 84%); margin-bottom: 24px; }
   .eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); }
-  h1, h2, h3, p { margin: 0; }
-  .hero-copy h1 { margin-top: 24px; max-width: 880px; font-size: clamp(50px, 6.8vw, 92px); line-height: 0.95; letter-spacing: -0.057em; font-weight: 300; }
+  .hero-copy h1 { margin-top: 22px; max-width: 880px; font-size: clamp(50px, 6.5vw, 88px); line-height: 0.96; letter-spacing: -0.057em; font-weight: 300; }
   .hero-body { margin-top: 30px; max-width: 790px; font-size: 18px; line-height: 1.9; color: var(--muted); }
   .hero-actions { margin-top: 42px; display: flex; flex-wrap: wrap; gap: 14px; }
+
   .button {
     display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px;
     border-radius: 999px; border: 1px solid var(--line); font-size: 11px; text-transform: uppercase; letter-spacing: 0.24em;
@@ -422,11 +435,16 @@ const styles = `
   .button-primary:hover { transform: translateY(-1px); background: rgba(255,255,255,0.92); }
   .button-secondary { color: rgba(255,255,255,0.78); }
   .button-secondary:hover { color: white; border-color: var(--line-strong); transform: translateY(-1px); }
+
   .signal-row { margin-top: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; max-width: 780px; }
-  .signal-row span { padding: 15px 14px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,0.022); text-align: center; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
+  .signal-row span { padding: 15px 14px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,0.022); text-align: center; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
 
   .hero-visual-wrap { display: flex; justify-content: flex-end; }
-  .control-panel { width: min(100%, 500px); min-height: 610px; border: 1px solid rgba(255,255,255,0.11); border-radius: var(--radius-xl); background: linear-gradient(to bottom, rgba(255,255,255,0.055), rgba(255,255,255,0.018)); padding: 28px; box-shadow: 0 24px 100px rgba(0,0,0,0.34); overflow: hidden; position: relative; }
+  .control-panel {
+    width: min(100%, 500px); min-height: 610px; border: 1px solid rgba(255,255,255,0.11);
+    border-radius: var(--radius-xl); background: linear-gradient(to bottom, rgba(255,255,255,0.055), rgba(255,255,255,0.018));
+    padding: 28px; box-shadow: 0 24px 100px rgba(0,0,0,0.34); overflow: hidden; position: relative;
+  }
   .control-panel::before { content: ""; position: absolute; inset: -120px -80px auto auto; width: 340px; height: 340px; border-radius: 999px; background: rgba(255,255,255,0.09); filter: blur(70px); }
   .panel-topline { display: flex; gap: 8px; position: relative; z-index: 1; }
   .panel-topline span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.22); }
@@ -436,21 +454,28 @@ const styles = `
   .orb { width: 142px; height: 142px; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; display: grid; place-items: center; background: rgba(255,255,255,0.026); }
   .orb span { width: 52px; height: 52px; border-radius: 999px; background: white; box-shadow: 0 0 70px rgba(255,255,255,0.45); }
   .core-lines i { position: absolute; left: 36px; right: 36px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.14), transparent); }
-  .core-lines i:nth-child(1) { top: 75px; } .core-lines i:nth-child(2) { top: 115px; } .core-lines i:nth-child(3) { top: 155px; }
+  .core-lines i:nth-child(1) { top: 75px; }
+  .core-lines i:nth-child(2) { top: 115px; }
+  .core-lines i:nth-child(3) { top: 155px; }
   .panel-rows { display: grid; gap: 12px; }
   .panel-row { min-height: 58px; border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; background: rgba(0,0,0,0.14); display: flex; align-items: center; justify-content: space-between; padding: 0 18px; }
   .panel-row span { color: rgba(255,255,255,0.56); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
   .panel-row strong { color: white; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; }
 
-  .problem-section { padding: 90px 0 70px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.012); }
-  .problem-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: start; }
-  .problem-grid h2, .section-head h2, .principle-copy h2, .contact-panel h2 { margin-top: 16px; font-size: clamp(34px, 4.2vw, 58px); line-height: 1.03; letter-spacing: -0.046em; font-weight: 300; }
-  .problem-copy { display: grid; gap: 22px; }
-  .problem-copy p, .section-head p, .principle-copy p, .contact-panel p { font-size: 18px; line-height: 1.9; color: var(--muted); }
+  .problem-section, .founder-section {
+    padding: 90px 0 78px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.012);
+  }
+  .problem-grid, .founder-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: start; }
+  .problem-grid h2, .founder-grid h2, .section-head h2, .principle-copy h2, .contact-panel h2 {
+    margin-top: 16px; font-size: clamp(34px, 4.2vw, 58px); line-height: 1.03; letter-spacing: -0.046em; font-weight: 300;
+  }
+  .problem-copy, .founder-copy { display: grid; gap: 22px; }
+  .problem-copy p, .founder-copy p, .section-head p, .principle-copy p, .contact-panel p { font-size: 18px; line-height: 1.9; color: var(--muted); }
 
   .content-section { padding: 116px 0; }
   .section-head { max-width: 940px; margin-bottom: 46px; }
   .section-head p { margin-top: 22px; max-width: 820px; }
+
   .system-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
   .system-card { min-height: 286px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--panel); transition: 180ms ease; }
   .system-card:hover { transform: translateY(-3px); border-color: var(--line-strong); background: rgba(255,255,255,0.05); }
@@ -470,8 +495,11 @@ const styles = `
   .principle-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-content: center; }
   .principle-chip { min-height: 66px; border: 1px solid var(--line); border-radius: 999px; display: flex; align-items: center; justify-content: center; padding: 0 18px; background: rgba(0,0,0,0.12); color: rgba(255,255,255,0.72); font-size: 12px; text-transform: uppercase; letter-spacing: 0.19em; text-align: center; }
 
-  .contact-section { padding: 60px 0 130px; }
+  .founder-section { margin-top: 10px; }
+
+  .contact-section { padding: 90px 0 130px; }
   .contact-panel { max-width: 980px; margin: 0 auto; text-align: center; padding: 56px 42px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: rgba(255,255,255,0.024); }
+  .contact-lockup { width: min(420px, 86%); margin: 0 auto 26px; }
   .contact-panel p { max-width: 790px; margin: 24px auto 0; }
   .contact-panel .button { margin-top: 34px; }
 
@@ -479,22 +507,24 @@ const styles = `
   .footer-inner { display: flex; justify-content: space-between; gap: 20px; color: rgba(255,255,255,0.36); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
 
   @media (max-width: 1120px) {
-    .hero-grid, .problem-grid, .principle-panel { grid-template-columns: 1fr; }
+    .hero-grid, .problem-grid, .founder-grid, .principle-panel { grid-template-columns: 1fr; }
     .hero-visual-wrap { justify-content: flex-start; }
     .system-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .work-item { grid-template-columns: 70px 1fr; }
     .work-item p { grid-column: 2; }
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 860px) {
     .site-nav, .header-cta { display: none; }
     .container { width: min(calc(100% - 32px), var(--container)); }
-    .hero-grid { padding-top: 64px; gap: 42px; }
+    .header-lockup { width: 160px; height: 62px; }
+    .hero-grid { padding-top: 56px; gap: 42px; }
+    .hero-lockup { width: min(430px, 100%); }
     .hero-copy h1 { font-size: clamp(44px, 14vw, 62px); }
-    .hero-body, .problem-copy p, .section-head p, .principle-copy p, .contact-panel p { font-size: 16px; line-height: 1.8; }
+    .hero-body, .problem-copy p, .founder-copy p, .section-head p, .principle-copy p, .contact-panel p { font-size: 16px; line-height: 1.8; }
     .signal-row, .system-grid, .principle-grid { grid-template-columns: 1fr; }
     .control-panel { min-height: 520px; }
-    .problem-section, .content-section { padding: 78px 0; }
+    .problem-section, .founder-section, .content-section { padding: 78px 0; }
     .work-item { grid-template-columns: 1fr; gap: 14px; }
     .work-item p { grid-column: auto; }
     .principle-panel, .contact-panel { padding: 34px 22px; }
